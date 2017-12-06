@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.sram.entity">
+
+	<class name="Emp" >
+		<id name="id" >
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+		<property name="password"></property>
+		<property name="birth"></property>
+		<property name="diploma"></property>
+		<property name="empStatus"></property>
+		<property name="tel"></property>
+		<property name="sex"></property>
+		<property name="entryType"></property>
+		<property name="hiredate"></property>
+		<property name="idCard"></property>
+		<property name="province"></property>
+		<property name="city"></property>
+		<property name="nation"></property>
+		<property name="conversionDate"></property>
+		
+		<many-to-one name="dept" class="Dept" column="deptId"></many-to-one>
+		
+		<bag name="roles" table="emp_role">
+			<key column="empId"></key>
+			<many-to-many class="Role" column="roleId"></many-to-many>
+		</bag>
+	</class>
+
+</hibernate-mapping>

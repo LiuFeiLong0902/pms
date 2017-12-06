@@ -1,0 +1,69 @@
+@CHARSET "UTF-8";
+/*设置无下划线的超连接样式*/
+A {
+	color: blue;
+	text-decoration: none;
+   }       
+A:hover{ /*鼠标在超链接上悬停时变为颜色*/
+   color: red;
+   }
+.boxBorder{
+	border-width:1px;
+	border-style:solid;
+	
+}
+.over{
+   background-image: url(../images/back2.jpg);
+   color:#CC0099;
+   border:0px;
+	margin:0px;
+	padding:0px;
+	height:23px;
+	width: 45px;
+	font-size: 14px;	  
+}
+.out{
+   background-image: url(../images/back1.jpg);
+   color:#0000FF;
+   border:0px;
+   margin:0px;
+   padding:0px;
+   height:23px;
+   width:45px;
+   font-size: 14px;	  
+}
+
+/* 康静定义的表格SPAN样式 */
+.span1 {
+	FLOAT:left; 
+	BACKGROUND-IMAGE: url(../images/main_hl2.gif); 
+	WIDTH: 15px; 
+	BACKGROUND-REPEAT: no-repeat; 
+	HEIGHT: 40px;
+}
+.span2 {
+	PADDING-RIGHT: 20px; 
+	PADDING-LEFT: 10px; 
+	FLOAT: left; 
+	BACKGROUND-IMAGE: url(../images/main_hb.gif); 
+	PADDING-BOTTOM: 10px; 
+	COLOR: white; 
+	PADDING-TOP: 10px; 
+	BACKGROUND-REPEAT: repeat-x; 
+	TEXT-ALIGN: center; 
+}
+.span3 {
+	FLOAT: left; 
+	BACKGROUND-IMAGE: url(../images/main_hr.gif); 
+	WIDTH: 60px; 
+	BACKGROUND-REPEAT: no-repeat; 
+	HEIGHT: 45px
+}
+
+/* 刘蒙: 字体 */
+.font {
+	font-family: 幼圆;
+	font-size: 50px;
+	font-weight: bold;
+	color: #FF3030;
+}

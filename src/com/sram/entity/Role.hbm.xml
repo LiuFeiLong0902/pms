@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.sram.entity">
+
+	<class name="Role" >
+		<id name="id" >
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+		<property name="description"></property>
+		
+		<bag name="emps" table="emp_role" cascade="save-update">
+			<key column="roleId"></key>
+			<many-to-many class="Emp" column="empId"></many-to-many>
+		</bag>
+		
+		<bag name="privileges" table="role_privilege" lazy="false">
+			<key column="roleId"></key>
+			<many-to-many class="Privilege" column="privilegeId"></many-to-many>
+		</bag>
+	</class>
+
+</hibernate-mapping>

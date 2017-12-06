@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 配置为开发模式 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 配置扩展名为action -->
+	<!-- 
+	<constant name="struts.action.extension" value="action" />
+	 -->
+	<!-- 配置主题 -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 让OGNL中可以使用静态的方法 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+
+
+	<package name="default" namespace="/" extends="json-default">
+	
+		
+		<interceptors>
+			<!-- 声明一个拦截器  --> 
+			<interceptor name="checkePrivilege" class="com.sram.inteceptor.CheckPrivilegeInterceptor"></interceptor>
+
+			 <!-- 重新定义defaultStack拦截器栈，需要先判断权限  -->
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="checkePrivilege" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+
+		<!-- 配置全局的Result -->
+		<global-results>
+			<result name="loginUI">/page/empAction/loginUI.jsp</result>
+			<result name="noPrivilegeError">/noPrivilegeError.jsp</result>
+		</global-results>
+	
+	
+		<!-- 测试用的action，当与Spring整合后，class属性写的就是Spring中bean的名称 -->
+		<action name="test" class="testAction">
+			<result>/test.jsp</result>
+		</action>
+		
+		
+		<!-- 员工管理 -->
+		<action name="empAction_*" class="empAction" method="{1}">
+			<result name="toIndex" type="redirect">/index.jsp</result>
+			<result name="list">/page/empAction/list.jsp</result>
+			<result name="addUI">/page/empAction/addUI.jsp</result>
+			<result name="info">/page/empAction/info.jsp</result>
+			<result name="listByConditions">/page/empAction/list.jsp</result>
+		</action>
+		
+		
+		<!-- 首页 -->
+		<action name="homeAction_*" class="homeAction" method="{1}">
+			<result name="{1}">/page/home/{1}.jsp</result>
+		</action>
+		
+		
+		<!-- 岗位(权限)管理 -->
+		<action name="roleAction_*" class="roleAction" method="{1}">
+			<result name="list">/page/roleAction/list.jsp</result>
+			<result name="edit">/page/roleAction/edit.jsp</result>
+			<result name="setPrivilegeUI">/page/roleAction/setPrivilegeUI.jsp</result>
+		</action>
+		
+		
+		<!-- 部门管理 -->
+		<action name="deptAction_*" class="deptAction" method="{1}">
+			<result>/page/deptAction/deptInfo.jsp</result>
+			<result name="view" type="json">
+				<param name="excludeProperties">
+					dept\.emps\[\d+\].roles,
+					dept\.parent,
+					dept\.children\[\d+\].parent,
+					dept\.children\[\d+\].children,
+					dept\.children\[\d+\].emps
+				</param>
+			</result>
+		</action>
+		
+		
+		<!-- 离职管理 -->
+		<action name="dimissionAction_*" class="dimissionAction" method="{1}">
+			<result name="forcedDimission">/page/dimissionAction/forcedDimission.jsp</result>
+		</action>
+		
+		
+		<!-- 个人信息 -->
+		<action name="selfAction_*" class="selfAction" method="{1}">
+			<result name="self">/page/selfAction/self.jsp</result>
+		</action>
+		
+		
+		<!-- 试用期管理 -->
+		<action name="probationAction_*" class="probationAction" method="{1}">
+			<result name="evaluationUI">/page/probationAction/evaluationUI.jsp</result>
+			<result name="list">/page/probationAction/list.jsp</result>
+			<result name="listByConditions">/page/probationAction/list.jsp</result>
+		</action>
+		
+		
+		<!-- postGo发布招聘信息 -->
+		<action name="postGoAction_*" class="postGoAction" method="{1}">
+			<result name="list">page/zhaopin/post.jsp</result>
+			<result name="list2">page/zhaopin/right_all_look.jsp</result>			
+			<result name="checkConditions">page/zhaopin/post.jsp</result>
+			<result name="checkConditions2">page/zhaopin/right_all_look.jsp</result>
+			<result name="checkone">page/zhaopin/post_check_one.jsp</result> 
+			<result name="checkone_one">page/zhaopin/post_update_one.jsp</result> 	
+		</action>
+		<!-- 游客来看看 -->
+			<action name="visitorAction_*" class="com.sram.action.VisitorAction" method="{1}">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+				image/gif
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>
+				/result.jsp
+			</result>
+			<result name="input">
+				/index.jsp
+			</result>
+			<result name="visitorList">
+				/page/zhaopin/resume.jsp
+			</result>
+			<result name="seeByCondition">
+				/page/zhaopin/resume.jsp
+			</result>
+				<result name="getOne">
+				/page/zhaopin/resume_confirm.jsp
+			</result>
+			<result name="login">/page/home/home.jsp</result>
+			<result name="back">/page/zhaopin/resume_add.jsp</result>
+		</action>
+		<!-- 部门调换 -->
+		<action name="deptChangeAction_*" class="deptChangeAction" method="{1}">
+			<result name="addUI">
+			/page/deptChangeAction/updateUI.jsp
+			</result>
+			<result name="getAll">
+			/page/deptChangeAction/seeChanges.jsp
+			</result>
+			<result name="getById">
+			/page/deptChangeAction/updateChange.jsp
+			</result>
+			<result name="addback">
+						/page/deptChangeAction/updateUI.jsp
+			</result>
+		</action>
+		
+		
+	</package>
+</struts>

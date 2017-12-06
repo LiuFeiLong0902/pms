@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="user" location="10,10" size="280,140">
+    <action name="user_*" location="66,48" size="150,62">
+      <result name="failed">
+        <resourceEdge source="failed" routing="0" target="login_form.htm" />
+      </result>
+      <result name="done">
+        <resourceEdge source="done" routing="0" target="login.htm" />
+      </result>
+    </action>
+  </package>
+  <webResource name="login_form.htm" path="/pages/login_form.htm" location="75,192" size="150,55" />
+  <webResource name="login.htm" path="/pages/login.htm" location="364,14" size="150,55" />
+</Struts2Diagram>
+

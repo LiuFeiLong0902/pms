@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.sram.entity">
+
+	<class name="Visitor" >
+		<id name="id" >
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+		<property name="age"></property>
+		<property name="birthday"></property>
+		<property name="hometown"></property>
+		<property name="workTime"></property>
+		<property name="idCard"></property>	
+		<property name="zongJiao"></property>
+		<property name="politics"></property>
+		<property name="citizenship"></property>
+		<property name="nation"></property>
+		<property name="sex"></property>
+		<property name="profession"></property>
+		<property name="state"></property>
+		<property name="confirm"></property>
+		<property name="image"></property>
+		
+		<property name="address"></property>
+		<property name="tel"></property>
+		<property name="postcode"></property>
+		<property name="email"></property>
+		
+			
+		<property name="school"></property>
+		<property name="edu"></property>
+		<property name="career"></property>
+		
+	</class>
+
+</hibernate-mapping>
